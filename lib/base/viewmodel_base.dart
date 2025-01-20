@@ -21,11 +21,13 @@ abstract class BaseViewModel<STATE, EFFECT, EVENT> extends ChangeNotifier implem
     _effectStream = EffectStream<BaseEffect>();
   }
 
+  @protected
   void updateState(STATE newState) {
     _stateStream.emit(newState);
     notifyListeners();
   }
 
+  @protected
   void sendEffect(BaseEffect effect) {
     _effectStream.emit(effect);
   }
