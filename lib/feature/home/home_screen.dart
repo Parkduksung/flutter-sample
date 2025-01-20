@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_sample/base/effect_base.dart';
 import 'package:flutter_sample/feature/home/component/book_item.dart';
 import 'package:flutter_sample/feature/home/home_contract.dart';
 import 'package:flutter_sample/feature/home/home_viewmodel.dart';
 import 'package:flutter_sample/ext/ext_state.dart';
+import 'package:flutter_sample/utils/debounce_texteditcontroller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
@@ -16,9 +16,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  DebouncedTextController? _debouncedTextController;
+
+  static const _debounceDuration = Duration(milliseconds: 1000);
+
   @override
   void initState() {
     super.initState();
+    _initializeTextController();
+    _setupEffectCollector();
+  }
+
+  void _initializeTextController() {
+    _debouncedTextController = DebouncedTextController(
+      onDebounce: (keyword) => widget.viewModel.event(Search(keyword)),
+      duration: _debounceDuration,
+    );
+  }
+
+  void _setupEffectCollector() {
     collectEffect<BaseEffect>(widget.viewModel.effect, (effect) {
       switch (effect) {
         case ShowToast():
@@ -39,12 +55,11 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               TextField(
-                controller: widget.viewModel.textController,
-                decoration: InputDecoration(
-                  hintText: '검색어를 입력하세요',
-                  border: const OutlineInputBorder(),
-                ),
-              ),
+                  controller: _debouncedTextController,
+                  decoration: InputDecoration(
+                    hintText: '검색어를 입력하세요',
+                    border: const OutlineInputBorder(),
+                  )),
               const SizedBox(height: 20),
               Expanded(
                 child: StreamBuilder<HomeState>(
@@ -71,5 +86,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _debouncedTextController?.dispose();
+    super.dispose();
   }
 }

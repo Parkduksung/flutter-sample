@@ -4,19 +4,13 @@ import 'package:flutter_sample/base/viewmodel_base.dart';
 import 'package:flutter_sample/domain/kakao/entity/document_entity.dart';
 import 'package:flutter_sample/domain/kakao/usecase/get_search_books_use_case.dart';
 import 'package:flutter_sample/feature/home/home_contract.dart';
-import 'package:flutter_sample/utils/debounce_texteditcontroller.dart';
 import 'package:flutter_sample/utils/result.dart';
 
 class HomeViewModel extends BaseViewModel<HomeState, HomeEffect, HomeEvent> {
   HomeViewModel({required GetSearchBooksUseCase getSearchBooksUseCase})
-      : _getSearchBooksUseCase = getSearchBooksUseCase {
-    textController = DebouncedTextController(
-        onDebounce: (keyword) => event(Search(keyword)),
-        duration: Duration(milliseconds: 1000));
-  }
+      : _getSearchBooksUseCase = getSearchBooksUseCase;
 
   final GetSearchBooksUseCase _getSearchBooksUseCase;
-  late final DebouncedTextController textController;
 
   @override
   HomeState get initialState => HomeState();
@@ -39,11 +33,5 @@ class HomeViewModel extends BaseViewModel<HomeState, HomeEffect, HomeEvent> {
           sendEffect(ShowToast(result.error.toString()));
       }
     });
-  }
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
   }
 }
