@@ -4,12 +4,6 @@ plugins {
     `kotlin-dsl-precompiled-script-plugins`
 }
 
-rootProject.buildDir = file("../build")
-subprojects {
-    project.buildDir = file("${rootProject.buildDir}/${project.name}")
-    project.evaluationDependsOn(":app")
-}
-
 group = "com.example.flutter_sample"
 
 java {
