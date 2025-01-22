@@ -2,16 +2,20 @@ package com.example.flutter_sample
 
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
 internal fun Project.configureFlutterAndroid() {
+
+    pluginManager.apply("org.jetbrains.kotlin.android")
+
     androidExtension.apply {
 
-        compileSdk = 35
-        ndkVersion = "27.0.12077973"
+        compileSdk = Versions.compileSdk
+        ndkVersion = Versions.ndkVersion
 
         compileOptions {
             sourceCompatibility = JavaVersion.VERSION_17
@@ -19,7 +23,7 @@ internal fun Project.configureFlutterAndroid() {
         }
 
         defaultConfig {
-            minSdk = 21
+            minSdk = Versions.minSdk
         }
     }
 
@@ -27,5 +31,10 @@ internal fun Project.configureFlutterAndroid() {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
+    }
+
+    val libs = extensions.libs
+    dependencies {
+        add("coreLibraryDesugaring", libs.findLibrary("android.desugar.jdk").get())
     }
 }

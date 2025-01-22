@@ -16,6 +16,12 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+    dependencies {
+        implementation(project(":common:model"))
+        implementation(project(":core:data"))
+        implementation(project(":core:domain"))
+    }
 }
 
 flutter {

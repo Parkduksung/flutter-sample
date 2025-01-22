@@ -4,7 +4,7 @@ plugins {
     `kotlin-dsl-precompiled-script-plugins`
 }
 
-group = "com.example.flutter_sample"
+group = "flutter.sample.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -15,6 +15,7 @@ java {
 dependencies {
     implementation(libs.android.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.ksp.gradlePlugin)
 }
 
 gradlePlugin {

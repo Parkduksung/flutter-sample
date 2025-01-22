@@ -1,4 +1,5 @@
 import com.example.flutter_sample.configureFlutterAndroid
+import com.example.flutter_sample.configureHiltAndroid
 
 
 plugins {
@@ -6,4 +7,5 @@ plugins {
     id("kotlin-android")
 }
 
+configureHiltAndroid()
 configureFlutterAndroid()
