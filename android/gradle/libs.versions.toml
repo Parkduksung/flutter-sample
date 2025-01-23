@@ -7,6 +7,9 @@ versionName = "1.0"
 # Android
 agp = "8.7.3"
 
+# AAC
+lifecycleViewmodelKtx = "2.8.7"
+
 # Kotlin
 kotlin = "2.1.0"
 coroutines = "1.10.1"
@@ -26,6 +29,9 @@ kotlinVersion = "2.1.0"
 
 # Android
 android-desugar-jdk = "com.android.tools:desugar_jdk_libs:2.1.4"
+
+# AAC
+lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 
 # Kotlin
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }

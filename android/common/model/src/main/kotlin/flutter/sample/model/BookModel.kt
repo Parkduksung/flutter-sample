@@ -1,5 +1,8 @@
 package flutter.sample.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class BookModel(
     val title : String,
     val contents : String,

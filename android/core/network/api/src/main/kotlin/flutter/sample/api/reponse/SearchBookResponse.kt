@@ -1,6 +1,7 @@
 package flutter.sample.api.reponse
 
 import flutter.sample.model.BookModel
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 
@@ -13,11 +14,11 @@ data class SearchBookResponse(
 
 @Serializable
 data class Meta(
-    @JsonNames("is_end")
+    @SerialName("is_end")
     val isEnd: Boolean,
-    @JsonNames("pageable_count")
+    @SerialName("pageable_count")
     val pageableCount: Int,
-    @JsonNames("total_count")
+    @SerialName("total_count")
     val totalCount: Int
 )
 
@@ -32,7 +33,7 @@ data class KakaoDocument(
     val publisher: String,
     val translators: List<String>,
     val price: Int,
-    @JsonNames("sale_price")
+    @SerialName("sale_price")
     val salePrice: Int,
     val thumbnail: String,
     val status: String

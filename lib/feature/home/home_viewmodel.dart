@@ -20,6 +20,8 @@ class HomeViewModel extends BaseViewModel<HomeState, HomeEffect, HomeEvent> {
     switch (event) {
       case Search():
         _searchBooks(event.keyword);
+      case UpdateSearchResult():
+        updateState(HomeState(searchList: event.documents));
     }
   }
 

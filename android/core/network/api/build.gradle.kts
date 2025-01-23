@@ -1,6 +1,7 @@
 plugins {
     id("flutter.android.library")
     id("flutter.sample.hilt")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {

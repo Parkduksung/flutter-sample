@@ -2,7 +2,8 @@ import 'package:flutter_sample/base/contract_base.dart';
 import 'package:flutter_sample/base/effect_base.dart';
 import 'package:flutter_sample/domain/kakao/entity/document_entity.dart';
 
-abstract class HomeContract implements BaseContract<HomeState, HomeEffect, HomeEvent> {}
+abstract class HomeContract
+    implements BaseContract<HomeState, HomeEffect, HomeEvent> {}
 
 class HomeState {
   final List<DocumentEntity> searchList;
@@ -12,7 +13,8 @@ class HomeState {
     return HomeState(searchList: searchList ?? this.searchList);
   }
 }
-sealed class HomeEffect extends BaseEffect{
+
+sealed class HomeEffect extends BaseEffect {
   const HomeEffect();
 }
 
@@ -20,7 +22,13 @@ sealed class HomeEvent {
   const HomeEvent();
 }
 
+final class UpdateSearchResult extends HomeEvent {
+  const UpdateSearchResult(this.documents);
+  final List<DocumentEntity> documents;
+}
+
 final class Search extends HomeEvent {
   const Search(this.keyword);
+
   final String keyword;
 }

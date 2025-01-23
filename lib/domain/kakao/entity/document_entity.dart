@@ -27,4 +27,22 @@ class DocumentEntity {
     required this.thumbnail,
     required this.status,
   });
+
+  factory DocumentEntity.fromJson(Map<String, dynamic> json) {
+    return DocumentEntity(
+      title: json['title'] as String,
+      contents: json['contents'] as String,
+      url: json['url'] as String,
+      isbn: json['isbn'] as String,
+      datetime: json['datetime'] as String,
+      authors: List<String>.from(json['authors']),
+      publisher: json['publisher'] as String,
+      translators: List<String>.from(json['translators']),
+      price: json['price'] as int,
+      salePrice: json['salePrice'] as int,
+      thumbnail: json['thumbnail'] as String,
+      status: json['status'] as String,
+    );
+  }
 }
+

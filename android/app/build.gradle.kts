@@ -1,6 +1,7 @@
 plugins {
     id("flutter.android.application")
     id("dev.flutter.flutter-gradle-plugin")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -21,6 +22,9 @@ android {
         implementation(project(":common:model"))
         implementation(project(":core:data"))
         implementation(project(":core:domain"))
+
+        implementation(libs.lifecycle.viewmodel.ktx)
+        implementation(libs.kotlin.serialization)
     }
 }
 

@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_sample/base/effect_base.dart';
+import 'package:flutter_sample/domain/kakao/entity/document_entity.dart';
 import 'package:flutter_sample/feature/home/component/book_item.dart';
 import 'package:flutter_sample/feature/home/home_contract.dart';
 import 'package:flutter_sample/feature/home/home_viewmodel.dart';
@@ -16,6 +20,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  static const MethodChannel methodChannel =
+      MethodChannel('samples.flutter.io/query');
+  static const EventChannel eventChannel =
+      EventChannel('samples.flutter.io/books');
   DebouncedTextController? _debouncedTextController;
 
   static const _debounceDuration = Duration(milliseconds: 1000);
@@ -24,14 +32,25 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _initializeTextController();
+    _setUpEventChannel();
     _setupEffectCollector();
   }
 
   void _initializeTextController() {
     _debouncedTextController = DebouncedTextController(
-      onDebounce: (keyword) => widget.viewModel.event(Search(keyword)),
+      onDebounce: (keyword) => methodChannel.invokeMethod('query', keyword),
       duration: _debounceDuration,
     );
+  }
+
+  void _setUpEventChannel() {
+    eventChannel.receiveBroadcastStream().listen((dynamic event) {
+      final List<dynamic> booksJson = json.decode(event as String);
+      final List<DocumentEntity> books = booksJson
+          .map((json) => DocumentEntity.fromJson(json as Map<String, dynamic>))
+          .toList();
+      widget.viewModel.event(UpdateSearchResult(books));
+    });
   }
 
   void _setupEffectCollector() {

@@ -3,18 +3,16 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
-import 'dart:ui' as _i7;
+import 'dart:async' as _i4;
+import 'dart:ui' as _i6;
 
-import 'package:flutter_sample/base/effect_base.dart' as _i6;
-import 'package:flutter_sample/domain/kakao/entity/document_entity.dart'
-    as _i10;
+import 'package:flutter_sample/base/effect_base.dart' as _i5;
+import 'package:flutter_sample/domain/kakao/entity/document_entity.dart' as _i9;
 import 'package:flutter_sample/domain/kakao/usecase/get_search_books_use_case.dart'
-    as _i8;
-import 'package:flutter_sample/feature/home/home_contract.dart' as _i3;
-import 'package:flutter_sample/feature/home/home_viewmodel.dart' as _i4;
-import 'package:flutter_sample/utils/debounce_texteditcontroller.dart' as _i2;
-import 'package:flutter_sample/utils/result.dart' as _i9;
+    as _i7;
+import 'package:flutter_sample/feature/home/home_contract.dart' as _i2;
+import 'package:flutter_sample/feature/home/home_viewmodel.dart' as _i3;
+import 'package:flutter_sample/utils/result.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -31,69 +29,45 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeDebouncedTextController_0 extends _i1.SmartFake
-    implements _i2.DebouncedTextController {
-  _FakeDebouncedTextController_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
-}
-
-class _FakeHomeState_1 extends _i1.SmartFake implements _i3.HomeState {
-  _FakeHomeState_1(Object parent, Invocation parentInvocation)
+class _FakeHomeState_0 extends _i1.SmartFake implements _i2.HomeState {
+  _FakeHomeState_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
 /// A class which mocks [HomeViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHomeViewModel extends _i1.Mock implements _i4.HomeViewModel {
+class MockHomeViewModel extends _i1.Mock implements _i3.HomeViewModel {
   MockHomeViewModel() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.DebouncedTextController get textController =>
-      (super.noSuchMethod(
-            Invocation.getter(#textController),
-            returnValue: _FakeDebouncedTextController_0(
-              this,
-              Invocation.getter(#textController),
-            ),
-          )
-          as _i2.DebouncedTextController);
-
-  @override
-  set textController(_i2.DebouncedTextController? _textController) =>
-      super.noSuchMethod(
-        Invocation.setter(#textController, _textController),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i3.HomeState get initialState =>
+  _i2.HomeState get initialState =>
       (super.noSuchMethod(
             Invocation.getter(#initialState),
-            returnValue: _FakeHomeState_1(
+            returnValue: _FakeHomeState_0(
               this,
               Invocation.getter(#initialState),
             ),
           )
-          as _i3.HomeState);
+          as _i2.HomeState);
 
   @override
-  _i5.Stream<_i3.HomeState> get state =>
+  _i4.Stream<_i2.HomeState> get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _i5.Stream<_i3.HomeState>.empty(),
+            returnValue: _i4.Stream<_i2.HomeState>.empty(),
           )
-          as _i5.Stream<_i3.HomeState>);
+          as _i4.Stream<_i2.HomeState>);
 
   @override
-  _i5.Stream<_i6.BaseEffect> get effect =>
+  _i4.Stream<_i5.BaseEffect> get effect =>
       (super.noSuchMethod(
             Invocation.getter(#effect),
-            returnValue: _i5.Stream<_i6.BaseEffect>.empty(),
+            returnValue: _i4.Stream<_i5.BaseEffect>.empty(),
           )
-          as _i5.Stream<_i6.BaseEffect>);
+          as _i4.Stream<_i5.BaseEffect>);
 
   @override
   bool get hasListeners =>
@@ -101,8 +75,20 @@ class MockHomeViewModel extends _i1.Mock implements _i4.HomeViewModel {
           as bool);
 
   @override
-  void event(_i3.HomeEvent? event) => super.noSuchMethod(
+  void event(_i2.HomeEvent? event) => super.noSuchMethod(
     Invocation.method(#event, [event]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void updateState(_i2.HomeState? newState) => super.noSuchMethod(
+    Invocation.method(#updateState, [newState]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void sendEffect(_i5.BaseEffect? effect) => super.noSuchMethod(
+    Invocation.method(#sendEffect, [effect]),
     returnValueForMissingStub: null,
   );
 
@@ -113,25 +99,13 @@ class MockHomeViewModel extends _i1.Mock implements _i4.HomeViewModel {
   );
 
   @override
-  void updateState(_i3.HomeState? newState) => super.noSuchMethod(
-    Invocation.method(#updateState, [newState]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void sendEffect(_i6.BaseEffect? effect) => super.noSuchMethod(
-    Invocation.method(#sendEffect, [effect]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void addListener(_i7.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
     Invocation.method(#addListener, [listener]),
     returnValueForMissingStub: null,
   );
 
   @override
-  void removeListener(_i7.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
     Invocation.method(#removeListener, [listener]),
     returnValueForMissingStub: null,
   );
@@ -147,17 +121,17 @@ class MockHomeViewModel extends _i1.Mock implements _i4.HomeViewModel {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetSearchBooksUseCase extends _i1.Mock
-    implements _i8.GetSearchBooksUseCase {
+    implements _i7.GetSearchBooksUseCase {
   MockGetSearchBooksUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Stream<_i9.Result<List<_i10.DocumentEntity>>> call(String? keyword) =>
+  _i4.Stream<_i8.Result<List<_i9.DocumentEntity>>> call(String? keyword) =>
       (super.noSuchMethod(
             Invocation.method(#call, [keyword]),
             returnValue:
-                _i5.Stream<_i9.Result<List<_i10.DocumentEntity>>>.empty(),
+                _i4.Stream<_i8.Result<List<_i9.DocumentEntity>>>.empty(),
           )
-          as _i5.Stream<_i9.Result<List<_i10.DocumentEntity>>>);
+          as _i4.Stream<_i8.Result<List<_i9.DocumentEntity>>>);
 }
