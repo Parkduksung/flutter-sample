@@ -1,4 +1,3 @@
-
 import 'package:flutter_sample/domain/kakao/entity/document_entity.dart';
 import 'package:flutter_sample/domain/kakao/repo/kakao_repository.dart';
 import 'package:flutter_sample/ext/ext_future.dart';
@@ -9,6 +8,6 @@ class GetSearchBooksUseCase {
       : _kakaoRepository = kakaoRepository;
   final KakaoRepository _kakaoRepository;
 
-  Stream<Result<List<DocumentEntity>>> call(String keyword) =>
-      Stream.fromFuture(_kakaoRepository.getDocuments(keyword).asResult());
+  Future<Result<List<DocumentEntity>>> call(String keyword) =>
+      _kakaoRepository.getDocuments(keyword).asResult();
 }

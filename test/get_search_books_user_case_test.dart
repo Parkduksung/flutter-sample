@@ -41,7 +41,7 @@ void main() {
           .thenAnswer((_) async => mockResponse);
 
       // when (스트림의 맨 첫번째 값)
-      final result = await getSearchBooksUseCase('테스트').first;
+      final result = await getSearchBooksUseCase('테스트');
 
       expect(result, isA<Ok<List<DocumentEntity>>>());
       expect((result as Ok).value, mockResponse);
@@ -53,7 +53,7 @@ void main() {
       when(mockKakaoRepository.getDocuments('테스트')).thenAnswer((_) => Future.error('error'));
       
       // when
-      final result = await getSearchBooksUseCase('테스트').first;
+      final result = await getSearchBooksUseCase('테스트');
 
       // then
       expect(result, isA<Error<List<DocumentEntity>>>());

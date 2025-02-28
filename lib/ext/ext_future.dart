@@ -6,3 +6,9 @@ extension FutureExtension<T> on Future<T> {
         .onError((error, stackTrace) => Result.error(Exception(error)));
   }
 }
+
+extension FutureToStreamExtension<T> on Future<T> {
+  Stream<T> asStream() {
+    return Stream.fromFuture(this);
+  }
+}
